@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Article } from '../types';
 
 interface ArticleCardProps {
@@ -6,6 +6,25 @@ interface ArticleCardProps {
 }
 
 export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
+    const [isVisited, setIsVisited] = useState(false);
+
+    useEffect(() => {
+        // Check if article has been visited
+        const visitedArticles = JSON.parse(localStorage.getItem('visitedArticles') || '[]');
+        const isVisited = visitedArticles.includes(article.url);
+        setIsVisited(isVisited);
+    }, [article.url]);
+
+    const handleLinkClick = () => {
+        // Mark article as visited
+        const visitedArticles = JSON.parse(localStorage.getItem('visitedArticles') || '[]');
+        if (!visitedArticles.includes(article.url)) {
+            visitedArticles.push(article.url);
+            localStorage.setItem('visitedArticles', JSON.stringify(visitedArticles));
+            setIsVisited(true);
+        }
+    };
+
     const formatDate = (date: Date) => {
         return date.toLocaleDateString('en-US', {
             month: 'long',
@@ -17,10 +36,15 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
     };
 
     return (
-        <article className="article">
+        <article className={`article ${isVisited ? 'visited' : ''}`}>
             <header className="article-header">
                 <h3>
-                    <a href={article.url} target="_blank" rel="noopener noreferrer">
+                    <a
+                        href={article.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={handleLinkClick}
+                    >
                         {article.title}
                     </a>
                 </h3>

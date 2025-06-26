@@ -317,6 +317,16 @@ h1::after {
     border-bottom-color: var(--link-color);
 }
 
+.article h3 a:visited {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.article h3 a:visited:hover {
+    color: var(--link-color);
+    opacity: 0.85;
+}
+
 .article p {
     margin: 0.25rem 0;
     color: var(--text-muted);
@@ -713,4 +723,40 @@ h1::after {
         break-inside: avoid;
         page-break-inside: avoid;
     }
+}
+
+/* Visited Article Styles */
+.article.visited {
+    background: var(--cream-color);
+    opacity: 0.85;
+    border-left-color: var(--text-muted);
+}
+
+.article.visited h3 {
+    color: var(--text-muted);
+}
+
+.article.visited h3 a {
+    color: var(--text-muted) !important;
+}
+
+.article.visited h3 a:hover {
+    color: var(--link-color) !important;
+    opacity: 1;
+}
+
+.article.visited:hover {
+    background: var(--cream-color);
+    opacity: 0.9;
+    transform: translateX(1px);
+}
+
+.article.visited .comments-link {
+    color: var(--text-muted) !important;
+    opacity: 0.8;
+}
+
+.article.visited .comments-link:hover {
+    color: var(--link-color) !important;
+    opacity: 1;
 }
