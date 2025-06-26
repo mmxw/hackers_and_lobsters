@@ -1,0 +1,24 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="180" height="180" fill="#1976d2" rx="20"/>
+  
+  <!-- News document -->
+  <rect x="30" y="25" width="120" height="130" rx="8" fill="white"/>
+  
+  <!-- Header -->
+  <rect x="45" y="45" width="90" height="8" fill="#1976d2"/>
+  
+  <!-- Article lines -->
+  <rect x="45" y="65" width="90" height="4" fill="#666"/>
+  <rect x="45" y="75" width="75" height="4" fill="#666"/>
+  <rect x="45" y="85" width="60" height="4" fill="#666"/>
+  
+  <!-- Second article -->
+  <rect x="45" y="105" width="90" height="4" fill="#666"/>
+  <rect x="45" y="115" width="80" height="4" fill="#666"/>
+  <rect x="45" y="125" width="70" height="4" fill="#666"/>
+  
+  <!-- Fire emoji representation -->
+  <circle cx="140" cy="40" r="15" fill="#ff5722"/>
+  <path d="M140 30 L145 38 L140 45 L135 38 Z" fill="#ff9800"/>
+</svg>

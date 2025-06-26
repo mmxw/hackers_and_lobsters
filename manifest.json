@@ -1,0 +1,23 @@
+{
+    "name": "Hackers and Lobsters",
+    "short_name": "Tech News",
+    "description": "Tech news aggregator for Hacker News and Lobste.rs",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0a0a0a",
+    "theme_color": "#00ff41",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "/apple-touch-icon.svg",
+            "sizes": "180x180",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        }
+    ]
+}
