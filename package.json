@@ -2,6 +2,7 @@
     "name": "hackers-and-lobsters",
     "version": "1.0.0",
     "description": "A React TypeScript tech news aggregator - Hackers and Lobsters",
+    "homepage": "https://mmxw.github.io/hackers_and_lobsters",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
