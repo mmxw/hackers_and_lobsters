@@ -37,4 +37,4 @@ npm run build
 
 ---
 
-*Est. 2025 - Your Daily Tech News Digest*
+*Est. 2025 - Your Daily Tech News Digest* 📰
