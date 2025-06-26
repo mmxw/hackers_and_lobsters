@@ -19,6 +19,14 @@ export const TabContent: React.FC<TabContentProps> = ({
     onTabSwitch,
     children
 }) => {
+    const getSourceName = (source: Source) => {
+        return source === 'hackernews' ? 'Hacker News' : 'Lobste.rs';
+    };
+
+    const getSourceIcon = (source: Source) => {
+        return source === 'hackernews' ? '🔶' : '🦞';
+    };
+
     return (
         <div className="tabs">
             <div className="tab-headers">
@@ -26,23 +34,33 @@ export const TabContent: React.FC<TabContentProps> = ({
                     className={`tab-btn ${activeTab === 'hackernews' ? 'active' : ''}`}
                     onClick={() => onTabSwitch('hackernews')}
                 >
-                    🔶 Hacker News (recent {hackerNewsCount})
+                    <span className="tab-icon">{getSourceIcon('hackernews')}</span>
+                    <span className="tab-title">Hackers Section</span>
                 </button>
                 <button
                     className={`tab-btn ${activeTab === 'lobsters' ? 'active' : ''}`}
                     onClick={() => onTabSwitch('lobsters')}
                 >
-                    🦞 Lobste.rs (recent {lobstersCount})
+                    <span className="tab-icon">{getSourceIcon('lobsters')}</span>
+                    <span className="tab-title">Lobsters Section</span>
                 </button>
             </div>
             <div className="tab-content">
-                {articles.length > 0 ? (
-                    articles.map((article, index) => (
-                        <ArticleCard key={`${article.source}-${index}`} article={article} />
-                    ))
-                ) : (
-                    <p className="no-articles">Loading articles...</p>
-                )}
+                <div className="section-header">
+                    <h2 className="section-title">
+                        {getSourceIcon(activeTab)} {getSourceName(activeTab)} - Latest Stories
+                    </h2>
+                    <div className="section-line"></div>
+                </div>
+                <div className="articles-grid">
+                    {articles.length > 0 ? (
+                        articles.map((article, index) => (
+                            <ArticleCard key={`${article.source}-${index}`} article={article} />
+                        ))
+                    ) : (
+                        <p className="no-articles">Loading the latest stories from our correspondents...</p>
+                    )}
+                </div>
                 {children}
             </div>
         </div>
