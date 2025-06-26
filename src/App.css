@@ -60,10 +60,10 @@ body {
     background: var(--paper-color);
     color: var(--ink-color);
     margin: 0;
-    padding: 2rem 1rem;
+    padding: 1rem 0.5rem;
     min-height: 100vh;
     transition: background-color 0.3s ease, color 0.3s ease;
-    line-height: 1.6;
+    line-height: 1.3;
     background-image:
         linear-gradient(90deg, var(--border-color) 1px, transparent 1px),
         linear-gradient(var(--border-color) 1px, transparent 1px);
@@ -79,7 +79,7 @@ body {
     background: var(--paper-color);
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
     border: 1px solid var(--border-color);
-    padding: 2rem;
+    padding: 1.5rem;
 }
 
 /* Theme Toggle Button */
@@ -115,12 +115,12 @@ h1 {
     color: var(--headline-color);
     text-align: center;
     margin: 1rem 0;
-    font-size: 3.5rem;
+    font-size: 4.5rem;
     font-weight: 900;
     letter-spacing: -1px;
     text-transform: uppercase;
     position: relative;
-    line-height: 1.1;
+    line-height: 1.0;
 }
 
 h1::before,
@@ -146,7 +146,7 @@ h1::after {
     display: block;
     position: relative;
     padding: 0;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 .no-articles {
@@ -267,9 +267,9 @@ h1::after {
 
 .article {
     background: var(--paper-color);
-    padding: 1.5rem;
+    padding: 1rem;
     border-bottom: 1px solid var(--border-color);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     position: relative;
     transition: all 0.3s ease;
     page-break-inside: avoid;
@@ -295,10 +295,10 @@ h1::after {
 
 .article h3 {
     margin-top: 0;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
     color: var(--headline-color);
     font-size: 1.25rem;
-    line-height: 1.3;
+    line-height: 1.1;
     font-family: 'Playfair Display', serif !important;
     font-weight: 700;
     text-transform: none;
@@ -318,7 +318,7 @@ h1::after {
 }
 
 .article p {
-    margin: 0.5rem 0;
+    margin: 0.25rem 0;
     color: var(--text-muted);
     font-size: 0.95rem;
     font-family: 'Old Standard TT', serif !important;
@@ -342,11 +342,11 @@ h1::after {
 
 /* Enhanced Article Styling */
 .article-header {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
 .article-meta {
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
 }
 
 .article-date {
@@ -358,8 +358,8 @@ h1::after {
 }
 
 .article-footer {
-    margin-top: 0.75rem;
-    padding-top: 0.5rem;
+    margin-top: 0.5rem;
+    padding-top: 0.25rem;
     border-top: 1px dotted var(--border-color);
 }
 
@@ -383,19 +383,20 @@ h1::after {
 
 /* Pagination styles */
 .pagination {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
     border-top: 2px double var(--ink-color);
 }
 
 .pagination-info {
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     color: var(--text-muted);
     font-family: 'Old Standard TT', serif !important;
     font-weight: 400;
     font-style: italic;
     letter-spacing: 0.5px;
+    line-height: 1.2;
 }
 
 .pagination-controls {
@@ -489,7 +490,7 @@ h1::after {
     font-size: 0.9rem;
     text-transform: capitalize;
     letter-spacing: 0.3px;
-    line-height: 1.2;
+    line-height: 1.0;
 }
 
 .tab-subtitle {
@@ -497,7 +498,7 @@ h1::after {
     color: var(--text-muted);
     font-family: 'Old Standard TT', serif !important;
     font-style: italic;
-    line-height: 1.1;
+    line-height: 1.0;
     margin-top: 0.1rem;
 }
 
@@ -535,8 +536,8 @@ h1::after {
 /* Newspaper Header */
 .newspaper-header {
     text-align: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.25rem;
     border-bottom: 3px double var(--ink-color);
 }
 
@@ -544,7 +545,7 @@ h1::after {
     font-family: 'Old Standard TT', serif !important;
     font-size: 0.9rem;
     color: var(--text-muted);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -553,7 +554,7 @@ h1::after {
     font-family: 'Old Standard TT', serif !important;
     font-size: 0.85rem;
     color: var(--text-muted);
-    margin-top: 0.5rem;
+    margin-top: 0.75rem;
     font-style: italic;
     letter-spacing: 1px;
 }
@@ -686,7 +687,7 @@ h1::after {
     .newspaper-subtitle {
         font-size: 0.75rem;
         margin-top: 0.5rem;
-        line-height: 1.3;
+        line-height: 1.1;
     }
 }
 
