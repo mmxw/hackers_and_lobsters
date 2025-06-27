@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -33,28 +33,27 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Debug - List dist contents
+      - name: Debug - Verify build output
         run: |
-          echo "Contents of dist folder:"
+          echo "=== Contents of dist folder ==="
           ls -la ./dist/
-          echo "Content of dist/index.html:"
-          head -30 ./dist/index.html
+          echo "=== Content of dist/index.html ==="
+          cat ./dist/index.html
+          echo "=== Verify script tag in dist/index.html ==="
+          grep -n "script" ./dist/index.html || echo "No script tag found"
+          echo "=== Verify JS bundle exists ==="
+          find ./dist -name "*.js" -type f
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
