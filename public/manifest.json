@@ -2,19 +2,19 @@
     "name": "Hackers and Lobsters",
     "short_name": "H&L News",
     "description": "Your Daily Tech News Digest - Classic newspaper style aggregator for Hacker News and Lobste.rs",
-    "start_url": "/hackers_and_lobsters/",
+    "start_url": "./",
     "display": "standalone",
     "background_color": "#fefefe",
     "theme_color": "#8b0000",
     "icons": [
         {
-            "src": "/hackers_and_lobsters/favicon.svg",
+            "src": "./favicon.svg",
             "sizes": "any",
             "type": "image/svg+xml",
             "purpose": "any"
         },
         {
-            "src": "/hackers_and_lobsters/apple-touch-icon.svg",
+            "src": "./apple-touch-icon.svg",
             "sizes": "180x180",
             "type": "image/svg+xml",
             "purpose": "any"
