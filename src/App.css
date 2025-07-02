@@ -113,7 +113,7 @@ body {
     padding: 3rem 2rem;
     background: transparent;
     border: none;
-    margin: 0;
+    margin: 2px 0;
 }
 
 .loading {
@@ -194,7 +194,7 @@ body {
 }
 
 .article h3 a,
-.article > div:first-child > a {
+.article>div:first-child>a {
     color: var(--text-primary);
     text-decoration: none;
     transition: none;
@@ -203,12 +203,12 @@ body {
 }
 
 .article h3 a:hover,
-.article > div:first-child > a:hover {
+.article>div:first-child>a:hover {
     text-decoration: underline;
 }
 
 .article h3 a:visited,
-.article > div:first-child > a:visited {
+.article>div:first-child>a:visited {
     color: var(--visited-color);
 }
 
@@ -219,7 +219,7 @@ body {
 
 .article-number {
     color: var(--text-secondary);
-    font-size: 9pt;
+    font-size: 12pt;
     font-weight: normal;
 }
 
@@ -236,7 +236,7 @@ body {
 .article a:not(h3 a) {
     color: var(--text-secondary);
     text-decoration: none;
-    font-size: 9pt;
+    font-size: 12pt;
     text-transform: none;
     transition: none;
     font-weight: normal;
@@ -274,7 +274,7 @@ body {
 
 .comments-link {
     font-family: Verdana, Geneva, sans-serif !important;
-    font-size: 9pt;
+    font-size: 9pt !important;
     color: var(--text-secondary) !important;
     text-decoration: none !important;
     font-weight: normal !important;
@@ -474,7 +474,7 @@ body {
 }
 
 /* Visited Article Styles */
-.article.visited > div:first-child > a {
+.article.visited>div:first-child>a {
     color: var(--visited-color) !important;
 }
 
