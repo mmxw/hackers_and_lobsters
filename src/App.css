@@ -218,7 +218,7 @@ body {
 }
 
 .article-number {
-    color: var(--text-secondary);
+    /* color: var(--text-secondary); */
     font-size: 12pt;
     font-weight: normal;
 }
