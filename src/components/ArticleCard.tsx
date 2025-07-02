@@ -55,7 +55,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
             </h3>
             {' '}
             <span className="article-meta">
-                <span className="article-date">authored by {article.author || 'anonymous'} {formatDate(article.timestamp)} | </span>
+                <span className="article-date">{formatDate(article.timestamp)} | </span>
                 <a href={article.commentsUrl} target="_blank" rel="noopener noreferrer" className="comments-link">
                     comments
                 </a>
