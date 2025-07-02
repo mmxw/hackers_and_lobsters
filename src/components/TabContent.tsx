@@ -55,7 +55,7 @@ export const TabContent: React.FC<TabContentProps> = ({
                 <div className="articles-grid">
                     {articles.length > 0 ? (
                         articles.map((article, index) => (
-                            <ArticleCard key={`${article.source}-${index}`} article={article} />
+                            <ArticleCard key={`${article.source}-${index}`} article={article} index={index + 1} />
                         ))
                     ) : (
                         <p className="no-articles">Loading the latest stories from our correspondents...</p>

@@ -221,7 +221,8 @@ h1::after {
     display: inline;
 }
 
-.article h3 a {
+.article h3 a,
+.article > div:first-child > a {
     color: var(--hn-text);
     text-decoration: none;
     transition: none;
@@ -229,12 +230,25 @@ h1::after {
     display: inline;
 }
 
-.article h3 a:hover {
+.article h3 a:hover,
+.article > div:first-child > a:hover {
     text-decoration: underline;
 }
 
-.article h3 a:visited {
+.article h3 a:visited,
+.article > div:first-child > a:visited {
     color: var(--hn-visited);
+}
+
+.domain {
+    color: var(--hn-comment);
+    font-size: 8pt;
+}
+
+.article-number {
+    color: var(--hn-comment);
+    font-size: 8pt;
+    font-weight: normal;
 }
 
 .article p {
@@ -266,8 +280,9 @@ h1::after {
 }
 
 .article-meta {
-    margin-top: 0;
-    display: inline;
+    margin-top: 2px;
+    display: block;
+    font-size: 8pt;
 }
 
 .article-date {
@@ -564,11 +579,13 @@ h1::after {
 }
 
 /* Visited Article Styles */
-.article.visited h3 a {
+.article.visited > div:first-child > a {
     color: var(--hn-visited) !important;
 }
 
+.article.visited .domain,
 .article.visited .article-date,
-.article.visited .comments-link {
+.article.visited .comments-link,
+.article.visited .article-number {
     color: var(--hn-visited) !important;
 }

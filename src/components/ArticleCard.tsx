@@ -3,9 +3,10 @@ import { Article } from '../types';
 
 interface ArticleCardProps {
     article: Article;
+    index: number;
 }
 
-export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
+export const ArticleCard: React.FC<ArticleCardProps> = ({ article, index }) => {
     const [isVisited, setIsVisited] = useState(false);
 
     useEffect(() => {
@@ -41,9 +42,20 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
         }
     };
 
+    const getDomainName = (url: string) => {
+        try {
+            const domain = new URL(url).hostname;
+            return domain.replace('www.', '');
+        } catch {
+            return '';
+        }
+    };
+
     return (
         <article className={`article ${isVisited ? 'visited' : ''}`}>
-            <h3>
+            <div>
+                <span className="article-number">{index}.</span>
+                {' '}
                 <a
                     href={article.url}
                     target="_blank"
@@ -52,14 +64,16 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
                 >
                     {article.title}
                 </a>
-            </h3>
-            {' '}
-            <span className="article-meta">
-                <span className="article-date">{formatDate(article.timestamp)} | </span>
+                {' '}
+                <span className="domain">({getDomainName(article.url)})</span>
+            </div>
+            <div className="article-meta">
+                <span className="article-date">{formatDate(article.timestamp)}</span>
+                {' | '}
                 <a href={article.commentsUrl} target="_blank" rel="noopener noreferrer" className="comments-link">
                     comments
                 </a>
-            </span>
+            </div>
         </article>
     );
 };
