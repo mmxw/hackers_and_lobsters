@@ -19,12 +19,8 @@ export const TabContent: React.FC<TabContentProps> = ({
     onTabSwitch,
     children
 }) => {
-    const getSourceName = (source: Source) => {
-        return source === 'hackernews' ? 'Hacker News' : 'Lobste.rs';
-    };
-
     const getSourceIcon = (source: Source) => {
-        return source === 'hackernews' ? '🔶' : '🦞';
+        return source === 'hackernews' ? 'Y' : '🦞';
     };
 
     return (
@@ -35,23 +31,17 @@ export const TabContent: React.FC<TabContentProps> = ({
                     onClick={() => onTabSwitch('hackernews')}
                 >
                     <span className="tab-icon">{getSourceIcon('hackernews')}</span>
-                    <span className="tab-title">Hackers Section</span>
+                    <span className="tab-title">Hacker News</span>
                 </button>
                 <button
                     className={`tab-btn ${activeTab === 'lobsters' ? 'active' : ''}`}
                     onClick={() => onTabSwitch('lobsters')}
                 >
                     <span className="tab-icon">{getSourceIcon('lobsters')}</span>
-                    <span className="tab-title">Lobsters Section</span>
+                    <span className="tab-title">Lobsters</span>
                 </button>
             </div>
             <div className="tab-content">
-                <div className="section-header">
-                    <h2 className="section-title">
-                        {getSourceIcon(activeTab)} {getSourceName(activeTab)} - Latest Stories
-                    </h2>
-                    <div className="section-line"></div>
-                </div>
                 <div className="articles-grid">
                     {articles.length > 0 ? (
                         articles.map((article, index) => (

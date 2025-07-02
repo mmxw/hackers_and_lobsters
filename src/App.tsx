@@ -25,13 +25,6 @@ const App: React.FC = () => {
         setIsDarkTheme(!isDarkTheme);
     };
 
-    const currentDate = new Date().toLocaleDateString('en-US', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
-
     return (
         <div className="App">
             <button
@@ -39,15 +32,12 @@ const App: React.FC = () => {
                 onClick={toggleTheme}
                 aria-label="Toggle theme"
             >
-                {isDarkTheme ? '☀️ Day Edition' : '🌙 Night Edition'}
+                {isDarkTheme ? '☀️' : '🌙'}
             </button>
 
-            <header className="newspaper-header">
-                <div className="newspaper-date">{currentDate}</div>
+            <header className="header">
                 <h1>Hackers and Lobsters</h1>
-                <div className="newspaper-subtitle">
-                    Your Daily Tech News Digest • Price: Free • Volume 1
-                </div>
+                <p className="subtitle">Your daily tech news digest</p>
             </header>
 
             <main id="articles">

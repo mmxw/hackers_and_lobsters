@@ -1,119 +1,99 @@
-/* Hacker News Style - Clean and Minimal */
+/* Modern Blog Style - Dark/Light Theme */
 
 /* Remove all fancy fonts and use simple system fonts */
 * {
-    font-family: Verdana, Geneva, sans-serif !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif !important;
     box-sizing: border-box;
 }
 
-/* Hacker News Theme Variables */
+/* Theme Variables */
 :root {
-    /* Hacker News Orange Theme */
-    --hn-orange: #ff6600;
-    --hn-bg: #f6f6ef;
-    --hn-text: #000000;
-    --hn-link: #000000;
-    --hn-visited: #828282;
-    --hn-comment: #828282;
-    --hn-border: #ff6600;
-    --hn-white: #ffffff;
+    /* Light Theme */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --text-primary: #1a1a1a;
+    --text-secondary: #6c757d;
+    --text-muted: #868e96;
+    --border-color: #dee2e6;
+    --accent-color: #007bff;
+    --accent-hover: #0056b3;
+    --visited-color: #828282;
+}
+
+/* Dark Theme */
+.dark-theme {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --text-muted: #888888;
+    --border-color: #404040;
+    --accent-color: #4dabf7;
+    --accent-hover: #339af0;
+    --visited-color: #666666;
 }
 
 body {
-    font-family: Verdana, Geneva, sans-serif !important;
-    font-size: 10pt;
-    color: var(--hn-text);
-    background: var(--hn-bg);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif !important;
+    font-size: 16px;
+    color: var(--text-primary);
+    background: var(--bg-primary);
     margin: 0;
     padding: 0;
-    line-height: 1.4;
-    /* Remove newspaper background pattern */
-    background-image: none;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .App {
-    /* Remove newspaper styling */
-    max-width: none;
-    margin: 0;
-    background: var(--hn-bg);
-    box-shadow: none;
-    border: none;
-    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    position: relative;
 }
 
-/* Hacker News Header */
+/* Header */
 .header {
-    background: var(--hn-orange);
-    padding: 2px;
-    margin: 0;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
 }
 
-.header-content {
-    background: var(--hn-orange);
-    padding: 6px;
-    display: flex;
-    align-items: center;
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+    line-height: 1.2;
 }
 
-.header-logo {
-    border: 1px solid var(--hn-white);
-    padding: 1px;
-    margin-right: 4px;
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin: 0 0 0.75rem 0;
+    font-weight: 400;
 }
 
-.header-logo img {
-    width: 18px;
-    height: 18px;
-    display: block;
-}
-
-h1 {
-    font-family: Verdana, Geneva, sans-serif !important;
-    color: var(--hn-text);
-    font-size: 13pt;
-    font-weight: bold;
-    margin: 0;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    display: inline;
-}
-
-/* Remove decorative elements */
-h1::before,
-h1::after {
-    display: none;
-}
-
-/* Theme Toggle - Hacker News Style */
+/* Theme Toggle */
 .theme-toggle {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    background: var(--hn-white);
-    border: 1px solid var(--hn-text);
-    border-radius: 0;
-    padding: 2px 6px;
+    top: 2rem;
+    right: 1rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.5rem;
     cursor: pointer;
-    font-family: Verdana, Geneva, sans-serif !important;
-    font-size: 8pt;
-    color: var(--hn-text);
-    text-transform: none;
-    letter-spacing: normal;
-    transition: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
     z-index: 1001;
-    box-shadow: none;
 }
 
 .theme-toggle:hover {
-    background: var(--hn-bg);
-    color: var(--hn-text);
-    transform: none;
-    box-shadow: none;
+    background: var(--accent-color);
+    border-color: var(--accent-color);
 }
 
 #articles {
-    background: var(--hn-white);
+    background: transparent;
     padding: 0;
     margin: 0;
     border-spacing: 0;
@@ -122,72 +102,64 @@ h1::after {
 
 .articles-grid {
     display: block;
-    background: var(--hn-white);
-    padding: 8px;
+    background: transparent;
+    padding: 0;
 }
 
 .no-articles {
     text-align: center;
-    color: var(--hn-comment);
-    font-size: 8pt;
-    padding: 20px;
-    background: var(--hn-white);
+    color: var(--text-muted);
+    font-size: 1rem;
+    padding: 3rem 2rem;
+    background: transparent;
     border: none;
     margin: 0;
 }
 
 .loading {
-    background: var(--hn-white);
+    background: transparent;
     border: none;
-    padding: 20px;
+    padding: 3rem 2rem;
     text-align: center;
-    color: var(--hn-text);
-    font-size: 8pt;
+    color: var(--text-primary);
+    font-size: 1rem;
 }
 
 .error {
-    background: var(--hn-white);
-    border: 1px solid var(--hn-orange);
-    padding: 20px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--accent-color);
+    border-radius: 8px;
+    padding: 2rem;
     text-align: center;
-    color: var(--hn-text);
-    font-size: 8pt;
-    margin: 10px 0;
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin: 2rem 0;
 }
 
 .error h2 {
-    font-family: Verdana, Geneva, sans-serif !important;
-    font-weight: bold;
-    font-size: 10pt;
-    margin-bottom: 10px;
-    text-transform: none;
-    letter-spacing: normal;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
 }
 
 .error button {
-    background: var(--hn-white);
-    color: var(--hn-text);
-    border: 1px solid var(--hn-text);
-    padding: 4px 8px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem 1.5rem;
     cursor: pointer;
-    margin-top: 10px;
-    font-family: Verdana, Geneva, sans-serif !important;
-    font-size: 8pt;
-    text-transform: none;
-    letter-spacing: normal;
-    transition: none;
-    box-shadow: none;
+    margin-top: 1rem;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
 }
 
 .error button:hover {
-    background: var(--hn-bg);
-    color: var(--hn-text);
-    transform: none;
-    box-shadow: none;
+    background: var(--accent-hover);
 }
 
 .article {
-    background: var(--hn-white);
+    background: transparent;
     padding: 3px 0;
     margin: 0;
     border: none;
@@ -205,16 +177,16 @@ h1::after {
 }
 
 .article:hover {
-    background: var(--hn-white);
+    background: transparent;
     border-left: none;
     transform: none;
 }
 
 .article h3 {
     margin: 0;
-    color: var(--hn-text);
-    font-size: 10pt;
-    line-height: 1.2;
+    color: var(--text-primary);
+    font-size: 12pt;
+    line-height: 1.3;
     font-family: Verdana, Geneva, sans-serif !important;
     font-weight: normal;
     text-transform: none;
@@ -223,7 +195,7 @@ h1::after {
 
 .article h3 a,
 .article > div:first-child > a {
-    color: var(--hn-text);
+    color: var(--text-primary);
     text-decoration: none;
     transition: none;
     border-bottom: none;
@@ -237,24 +209,24 @@ h1::after {
 
 .article h3 a:visited,
 .article > div:first-child > a:visited {
-    color: var(--hn-visited);
+    color: var(--visited-color);
 }
 
 .domain {
-    color: var(--hn-comment);
-    font-size: 8pt;
+    color: var(--text-secondary);
+    font-size: 9pt;
 }
 
 .article-number {
-    color: var(--hn-comment);
-    font-size: 8pt;
+    color: var(--text-secondary);
+    font-size: 9pt;
     font-weight: normal;
 }
 
 .article p {
     margin: 0;
-    color: var(--hn-comment);
-    font-size: 8pt;
+    color: var(--text-secondary);
+    font-size: 9pt;
     font-family: Verdana, Geneva, sans-serif !important;
     font-weight: normal;
     font-style: normal;
@@ -262,9 +234,9 @@ h1::after {
 }
 
 .article a:not(h3 a) {
-    color: var(--hn-comment);
+    color: var(--text-secondary);
     text-decoration: none;
-    font-size: 8pt;
+    font-size: 9pt;
     text-transform: none;
     transition: none;
     font-weight: normal;
@@ -287,8 +259,8 @@ h1::after {
 
 .article-date {
     font-family: Verdana, Geneva, sans-serif !important;
-    font-size: 8pt;
-    color: var(--hn-comment);
+    font-size: 9pt;
+    color: var(--text-secondary);
     font-style: normal;
     text-transform: none;
 }
@@ -302,8 +274,8 @@ h1::after {
 
 .comments-link {
     font-family: Verdana, Geneva, sans-serif !important;
-    font-size: 8pt;
-    color: var(--hn-comment) !important;
+    font-size: 9pt;
+    color: var(--text-secondary) !important;
     text-decoration: none !important;
     font-weight: normal !important;
     text-transform: none !important;
@@ -314,154 +286,77 @@ h1::after {
 }
 
 .comments-link:hover {
-    color: var(--hn-comment) !important;
+    color: var(--text-secondary) !important;
     text-decoration: underline !important;
 }
 
-/* Tab layout */
+/* Tab layout - Modern Blog Style */
 .tabs {
-    background: var(--paper-color);
-    border: 2px solid var(--ink-color);
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: transparent;
+    margin-top: 0;
 }
 
 .tab-headers {
     display: flex;
-    background: var(--cream-color);
-    border-bottom: 2px solid var(--ink-color);
+    background: transparent;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+    gap: 2rem;
 }
 
 .tab-btn {
-    flex: 1;
     background: transparent;
     border: none;
-    border-right: 1px solid var(--border-color);
-    padding: 1rem 1.5rem;
-    font-size: 0.95rem;
-    font-weight: 400;
-    color: var(--ink-color);
+    border-bottom: 2px solid transparent;
+    padding: 0.75rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
-    font-family: 'Playfair Display', serif !important;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 0.1rem;
-    text-align: center;
-    min-height: 80px;
-    justify-content: center;
+    gap: 0.5rem;
+    margin-right: 0;
 }
 
 .tab-icon {
-    font-size: 1.1rem;
-    display: block;
-    margin-bottom: 0.25rem;
+    font-size: 1rem;
 }
 
 .tab-title {
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-transform: capitalize;
-    letter-spacing: 0.3px;
-    line-height: 1.0;
-}
-
-.tab-subtitle {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    font-family: 'Old Standard TT', serif !important;
-    font-style: italic;
-    line-height: 1.0;
-    margin-top: 0.1rem;
-}
-
-.tab-btn:last-child {
-    border-right: none;
+    font-weight: 500;
+    font-size: 1rem;
 }
 
 .tab-btn:hover {
-    background: var(--paper-color);
-    color: var(--headline-color);
+    color: var(--text-primary);
 }
 
 .tab-btn.active {
-    background: var(--headline-color);
-    color: var(--paper-color);
-    font-weight: 700;
-}
-
-.tab-btn.active::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--headline-color);
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+    font-weight: 600;
 }
 
 .tab-content {
-    padding: 2rem 1.5rem;
-    min-height: 400px;
-    background: var(--paper-color);
+    background: transparent;
+    padding: 0;
 }
 
-/* Newspaper Header */
-.newspaper-header {
-    text-align: center;
-    margin-bottom: 2.5rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 3px double var(--ink-color);
-}
-
-.newspaper-date {
-    font-family: 'Old Standard TT', serif !important;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-bottom: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.newspaper-subtitle {
-    font-family: 'Old Standard TT', serif !important;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    margin-top: 0.75rem;
-    font-style: italic;
-    letter-spacing: 1px;
-}
-
-/* Section Header */
-.section-header {
-    margin-bottom: 1.5rem;
-    text-align: center;
-    position: relative;
-}
-
-.section-title {
-    font-family: 'Playfair Display', serif !important;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--headline-color);
-    margin-bottom: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.section-line {
-    width: 60%;
-    height: 1px;
-    background: var(--ink-color);
-    margin: 0 auto;
+/* Hacker News specific styling */
+.tab-btn[class*="hackernews"] .tab-icon,
+.tab-btn:first-child .tab-icon {
+    color: #ff6600;
+    font-weight: bold;
+    font-family: monospace;
 }
 
 /* Articles Grid */
 .articles-grid {
     display: block;
-    background: var(--hn-white);
+    background: transparent;
     padding: 8px;
 }
 
@@ -486,75 +381,79 @@ h1::after {
 /* Responsive design */
 @media (max-width: 768px) {
     body {
-        padding: 1rem 0.5rem;
+        padding: 0.5rem 0.5rem;
     }
 
     .App {
-        padding: 1rem;
+        padding: 0.75rem;
+        max-width: 100%;
     }
 
-    .theme-toggle {
-        top: 15px;
-        right: 10px;
-        padding: 0.3rem 0.5rem;
-        font-size: 0.7rem;
-        box-shadow: 1px 1px 0 var(--ink-color);
+    /* Reduce header spacing on mobile */
+    .header {
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.25rem;
     }
 
-    h1 {
-        margin-top: 3.5rem;
-        margin-bottom: 1.5rem;
-        font-size: 2.2rem;
-        padding-right: 0;
-        text-align: center;
+    .header h1 {
+        font-size: 2rem;
+        margin: 0 0 0.125rem 0;
     }
 
-    h1::before {
-        font-size: 0.6rem;
+    .subtitle {
+        font-size: 1rem;
+        margin: 0 0 0.5rem 0;
+    }
+
+    /* Compact tabs on mobile */
+    .tab-headers {
+        margin-bottom: 0.75rem;
+        gap: 1.5rem;
     }
 
     .tab-btn {
-        font-size: 0.85rem;
-        padding: 0.75rem 0.5rem;
-        min-height: 70px;
+        font-size: 0.9rem;
+        padding: 0.5rem 0;
     }
 
     .tab-icon {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .tab-title {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 
-    .tab-subtitle {
-        font-size: 0.7rem;
+    /* Theme toggle adjustment for mobile */
+    .theme-toggle {
+        top: 0.75rem;
+        right: 0.75rem;
+        padding: 0.4rem;
+        font-size: 1rem;
+    }
+
+    /* Article alignment and spacing */
+    .articles-grid {
+        padding: 0;
+        margin: 0;
     }
 
     .article {
-        padding: 1rem;
+        padding: 0;
+        margin-bottom: 0.75rem;
     }
 
     .article h3 {
-        font-size: 1.1rem;
+        font-size: 12pt;
     }
 
-    .newspaper-header {
-        margin-bottom: 1.5rem;
-        padding: 2.5rem 0.5rem 1rem;
-        margin-top: 0.5rem;
+    /* Better mobile article layout */
+    .article-header {
+        margin-bottom: 0;
     }
 
-    .newspaper-date {
-        font-size: 0.75rem;
-        margin-bottom: 0.25rem;
-        margin-top: 0;
-    }
-
-    .newspaper-subtitle {
-        font-size: 0.75rem;
-        margin-top: 0.5rem;
-        line-height: 1.1;
+    .article-meta {
+        margin-top: 1px;
     }
 }
 
@@ -562,10 +461,6 @@ h1::after {
     body {
         background: white;
         color: black;
-    }
-
-    .theme-toggle {
-        display: none;
     }
 
     .tab-headers {
@@ -580,12 +475,12 @@ h1::after {
 
 /* Visited Article Styles */
 .article.visited > div:first-child > a {
-    color: var(--hn-visited) !important;
+    color: var(--visited-color) !important;
 }
 
 .article.visited .domain,
 .article.visited .article-date,
 .article.visited .comments-link,
 .article.visited .article-number {
-    color: var(--hn-visited) !important;
+    color: var(--visited-color) !important;
 }
