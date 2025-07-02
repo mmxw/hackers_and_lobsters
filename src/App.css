@@ -1,456 +1,306 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap');
+/* Hacker News Style - Clean and Minimal */
 
-/* Apply newspaper fonts */
+/* Remove all fancy fonts and use simple system fonts */
 * {
-    font-family: 'Crimson Text', serif !important;
+    font-family: Verdana, Geneva, sans-serif !important;
+    box-sizing: border-box;
 }
 
-/* Newspaper Theme Variables */
+/* Hacker News Theme Variables */
 :root {
-    /* Light Theme - Traditional Newspaper */
-    --light-ink: #1a1a1a;
-    --light-paper: #fefefe;
-    --light-cream: #f8f6f0;
-    --light-red: #8b0000;
-    --light-blue: #003366;
-    --light-gray: #666666;
-    --light-border: #d4d4d4;
-    --light-accent: #b8860b;
-
-    /* Dark Theme - Night Mode */
-    --dark-ink: #e8e8e8;
-    --dark-paper: #1f1f1f;
-    --dark-cream: #2a2a2a;
-    --dark-red: #cc6666;
-    --dark-blue: #81a2be;
-    --dark-gray: #969896;
-    --dark-border: #373b41;
-    --dark-accent: #f0c674;
-}
-
-/* Default to light theme */
-:root {
-    --ink-color: var(--light-ink);
-    --paper-color: var(--light-paper);
-    --cream-color: var(--light-cream);
-    --headline-color: var(--light-red);
-    --link-color: var(--light-blue);
-    --text-muted: var(--light-gray);
-    --border-color: var(--light-border);
-    --accent-color: var(--light-accent);
-}
-
-/* Dark theme class */
-.dark-theme {
-    --ink-color: var(--dark-ink);
-    --paper-color: var(--dark-paper);
-    --cream-color: var(--dark-cream);
-    --headline-color: var(--dark-red);
-    --link-color: var(--dark-blue);
-    --text-muted: var(--dark-gray);
-    --border-color: var(--dark-border);
-    --accent-color: var(--dark-accent);
+    /* Hacker News Orange Theme */
+    --hn-orange: #ff6600;
+    --hn-bg: #f6f6ef;
+    --hn-text: #000000;
+    --hn-link: #000000;
+    --hn-visited: #828282;
+    --hn-comment: #828282;
+    --hn-border: #ff6600;
+    --hn-white: #ffffff;
 }
 
 body {
-    font-family: 'Crimson Text', serif !important;
-    font-weight: 400;
-    background: var(--paper-color);
-    color: var(--ink-color);
+    font-family: Verdana, Geneva, sans-serif !important;
+    font-size: 10pt;
+    color: var(--hn-text);
+    background: var(--hn-bg);
     margin: 0;
-    padding: 1rem 0.5rem;
-    min-height: 100vh;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    line-height: 1.3;
-    background-image:
-        linear-gradient(90deg, var(--border-color) 1px, transparent 1px),
-        linear-gradient(var(--border-color) 1px, transparent 1px);
-    background-size: 20px 20px;
-    background-position: 0 0, 0 0;
-    background-attachment: fixed;
+    padding: 0;
+    line-height: 1.4;
+    /* Remove newspaper background pattern */
+    background-image: none;
 }
 
 .App {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    background: var(--paper-color);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--border-color);
-    padding: 1.5rem;
+    /* Remove newspaper styling */
+    max-width: none;
+    margin: 0;
+    background: var(--hn-bg);
+    box-shadow: none;
+    border: none;
+    padding: 0;
 }
 
-/* Theme Toggle Button */
-.theme-toggle {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--paper-color);
-    border: 2px solid var(--ink-color);
-    border-radius: 0;
-    padding: 0.6rem 0.8rem;
-    cursor: pointer;
-    font-family: 'Old Standard TT', serif !important;
-    font-weight: 400;
-    color: var(--ink-color);
-    font-size: 0.85rem;
-    text-transform: capitalize;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
-    z-index: 1001;
-    box-shadow: 2px 2px 0 var(--ink-color);
+/* Hacker News Header */
+.header {
+    background: var(--hn-orange);
+    padding: 2px;
+    margin: 0;
 }
 
-.theme-toggle:hover {
-    background: var(--ink-color);
-    color: var(--paper-color);
-    transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0 var(--border-color);
+.header-content {
+    background: var(--hn-orange);
+    padding: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.header-logo {
+    border: 1px solid var(--hn-white);
+    padding: 1px;
+    margin-right: 4px;
+}
+
+.header-logo img {
+    width: 18px;
+    height: 18px;
+    display: block;
 }
 
 h1 {
-    font-family: 'Playfair Display', serif !important;
-    color: var(--headline-color);
-    text-align: center;
-    margin: 1rem 0;
-    font-size: 4.5rem;
-    font-weight: 900;
-    letter-spacing: -1px;
-    text-transform: uppercase;
-    position: relative;
-    line-height: 1.0;
+    font-family: Verdana, Geneva, sans-serif !important;
+    color: var(--hn-text);
+    font-size: 13pt;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    display: inline;
 }
 
+/* Remove decorative elements */
 h1::before,
 h1::after {
-    content: '';
+    display: none;
+}
+
+/* Theme Toggle - Hacker News Style */
+.theme-toggle {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120px;
-    height: 1px;
-    background: var(--ink-color);
+    top: 8px;
+    right: 8px;
+    background: var(--hn-white);
+    border: 1px solid var(--hn-text);
+    border-radius: 0;
+    padding: 2px 6px;
+    cursor: pointer;
+    font-family: Verdana, Geneva, sans-serif !important;
+    font-size: 8pt;
+    color: var(--hn-text);
+    text-transform: none;
+    letter-spacing: normal;
+    transition: none;
+    z-index: 1001;
+    box-shadow: none;
 }
 
-h1::before {
-    top: -0.5rem;
-}
-
-h1::after {
-    bottom: -0.5rem;
+.theme-toggle:hover {
+    background: var(--hn-bg);
+    color: var(--hn-text);
+    transform: none;
+    box-shadow: none;
 }
 
 #articles {
-    display: block;
-    position: relative;
+    background: var(--hn-white);
     padding: 0;
-    margin-top: 1.5rem;
+    margin: 0;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.articles-grid {
+    display: block;
+    background: var(--hn-white);
+    padding: 8px;
 }
 
 .no-articles {
     text-align: center;
-    color: var(--text-muted);
-    font-style: italic;
-    padding: 3rem 2rem;
-    background: var(--cream-color);
-    border: 1px solid var(--border-color);
-    margin: 1rem 0;
-    font-size: 1.1rem;
+    color: var(--hn-comment);
+    font-size: 8pt;
+    padding: 20px;
+    background: var(--hn-white);
+    border: none;
+    margin: 0;
 }
 
 .loading {
-    background: var(--cream-color);
-    border: 2px solid var(--border-color);
-    padding: 2rem;
+    background: var(--hn-white);
+    border: none;
+    padding: 20px;
     text-align: center;
-    color: var(--ink-color);
-    position: relative;
-    font-size: 1.1rem;
-    font-style: italic;
-}
-
-.loading::after {
-    content: '...';
-    animation: dots 1.5s infinite;
-}
-
-@keyframes dots {
-
-    0%,
-    20% {
-        content: '';
-    }
-
-    40% {
-        content: '.';
-    }
-
-    60% {
-        content: '..';
-    }
-
-    80%,
-    100% {
-        content: '...';
-    }
-}
-
-@keyframes dots {
-
-    0%,
-    20% {
-        content: '';
-    }
-
-    40% {
-        content: '.';
-    }
-
-    60% {
-        content: '..';
-    }
-
-    80%,
-    100% {
-        content: '...';
-    }
-}
-
-/* Add some newspaper-style flourishes */
-.article:first-child {
-    border-top: 2px solid var(--ink-color);
-    padding-top: 1.5rem;
+    color: var(--hn-text);
+    font-size: 8pt;
 }
 
 .error {
-    background: var(--cream-color);
-    border: 3px solid var(--headline-color);
-    border-style: double;
-    padding: 2rem;
+    background: var(--hn-white);
+    border: 1px solid var(--hn-orange);
+    padding: 20px;
     text-align: center;
-    color: var(--headline-color);
-    font-size: 1.1rem;
-    margin: 2rem 0;
+    color: var(--hn-text);
+    font-size: 8pt;
+    margin: 10px 0;
 }
 
 .error h2 {
-    font-family: 'Playfair Display', serif !important;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-family: Verdana, Geneva, sans-serif !important;
+    font-weight: bold;
+    font-size: 10pt;
+    margin-bottom: 10px;
+    text-transform: none;
+    letter-spacing: normal;
 }
 
 .error button {
-    background: var(--paper-color);
-    color: var(--headline-color);
-    border: 2px solid var(--headline-color);
-    padding: 0.75rem 1.5rem;
+    background: var(--hn-white);
+    color: var(--hn-text);
+    border: 1px solid var(--hn-text);
+    padding: 4px 8px;
     cursor: pointer;
-    margin-top: 1rem;
-    font-family: 'Old Standard TT', serif !important;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-    box-shadow: 2px 2px 0 var(--headline-color);
+    margin-top: 10px;
+    font-family: Verdana, Geneva, sans-serif !important;
+    font-size: 8pt;
+    text-transform: none;
+    letter-spacing: normal;
+    transition: none;
+    box-shadow: none;
 }
 
 .error button:hover {
-    background: var(--headline-color);
-    color: var(--paper-color);
-    transform: translate(-2px, -2px);
-    box-shadow: 4px 4px 0 var(--border-color);
+    background: var(--hn-bg);
+    color: var(--hn-text);
+    transform: none;
+    box-shadow: none;
 }
 
 .article {
-    background: var(--paper-color);
-    padding: 1rem;
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: 1rem;
+    background: var(--hn-white);
+    padding: 3px 0;
+    margin: 0;
+    border: none;
     position: relative;
-    transition: all 0.3s ease;
+    transition: none;
     page-break-inside: avoid;
-    border-left: 3px solid transparent;
+    border-left: none;
+    display: block;
+    font-size: 10pt;
+    line-height: 1.2;
 }
 
 .article:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: 1px;
-    background: var(--border-color);
+    display: none;
 }
 
 .article:hover {
-    background: var(--cream-color);
-    border-left-color: var(--headline-color);
-    transform: translateX(2px);
+    background: var(--hn-white);
+    border-left: none;
+    transform: none;
 }
 
 .article h3 {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    color: var(--headline-color);
-    font-size: 1.25rem;
-    line-height: 1.1;
-    font-family: 'Playfair Display', serif !important;
-    font-weight: 700;
+    margin: 0;
+    color: var(--hn-text);
+    font-size: 10pt;
+    line-height: 1.2;
+    font-family: Verdana, Geneva, sans-serif !important;
+    font-weight: normal;
     text-transform: none;
+    display: inline;
 }
 
 .article h3 a {
-    color: var(--headline-color);
+    color: var(--hn-text);
     text-decoration: none;
-    transition: all 0.3s ease;
-    border-bottom: 1px solid transparent;
-    display: block;
+    transition: none;
+    border-bottom: none;
+    display: inline;
 }
 
 .article h3 a:hover {
-    color: var(--link-color);
-    border-bottom-color: var(--link-color);
+    text-decoration: underline;
 }
 
 .article h3 a:visited {
-    color: var(--text-muted);
-    opacity: 0.7;
-}
-
-.article h3 a:visited:hover {
-    color: var(--link-color);
-    opacity: 0.85;
+    color: var(--hn-visited);
 }
 
 .article p {
-    margin: 0.25rem 0;
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    font-family: 'Old Standard TT', serif !important;
-    font-weight: 400;
-    font-style: italic;
+    margin: 0;
+    color: var(--hn-comment);
+    font-size: 8pt;
+    font-family: Verdana, Geneva, sans-serif !important;
+    font-weight: normal;
+    font-style: normal;
+    display: inline;
 }
 
 .article a:not(h3 a) {
-    color: var(--link-color);
-    text-decoration: underline;
-    font-size: 0.9rem;
-    text-transform: capitalize;
-    transition: all 0.3s ease;
-    font-weight: 600;
+    color: var(--hn-comment);
+    text-decoration: none;
+    font-size: 8pt;
+    text-transform: none;
+    transition: none;
+    font-weight: normal;
 }
 
 .article a:not(h3 a):hover {
-    color: var(--headline-color);
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 /* Enhanced Article Styling */
 .article-header {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
 }
 
 .article-meta {
-    margin-top: 0.25rem;
+    margin-top: 0;
+    display: inline;
 }
 
 .article-date {
-    font-family: 'Old Standard TT', serif !important;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    font-style: italic;
-    text-transform: capitalize;
+    font-family: Verdana, Geneva, sans-serif !important;
+    font-size: 8pt;
+    color: var(--hn-comment);
+    font-style: normal;
+    text-transform: none;
 }
 
 .article-footer {
-    margin-top: 0.5rem;
-    padding-top: 0.25rem;
-    border-top: 1px dotted var(--border-color);
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+    display: inline;
 }
 
 .comments-link {
-    font-family: 'Old Standard TT', serif !important;
-    font-size: 0.85rem;
-    color: var(--link-color) !important;
+    font-family: Verdana, Geneva, sans-serif !important;
+    font-size: 8pt;
+    color: var(--hn-comment) !important;
     text-decoration: none !important;
-    font-weight: 600 !important;
+    font-weight: normal !important;
     text-transform: none !important;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
+    transition: none;
+    display: inline;
+    align-items: baseline;
+    gap: 0;
 }
 
 .comments-link:hover {
-    color: var(--headline-color) !important;
+    color: var(--hn-comment) !important;
     text-decoration: underline !important;
-}
-
-/* Pagination styles */
-.pagination {
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 2px double var(--ink-color);
-}
-
-.pagination-info {
-    text-align: center;
-    margin-bottom: 0.75rem;
-    color: var(--text-muted);
-    font-family: 'Old Standard TT', serif !important;
-    font-weight: 400;
-    font-style: italic;
-    letter-spacing: 0.5px;
-    line-height: 1.2;
-}
-
-.pagination-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.page-btn {
-    background: var(--paper-color);
-    border: 2px solid var(--ink-color);
-    color: var(--ink-color);
-    padding: 0.5rem 0.75rem;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-family: 'Old Standard TT', serif !important;
-    font-weight: 400;
-    transition: all 0.3s ease;
-    min-width: 40px;
-    box-shadow: 1px 1px 0 var(--ink-color);
-}
-
-.page-btn:hover:not(:disabled) {
-    background: var(--ink-color);
-    color: var(--paper-color);
-    transform: translate(-1px, -1px);
-    box-shadow: 2px 2px 0 var(--border-color);
-}
-
-.page-btn.active {
-    background: var(--headline-color);
-    color: var(--paper-color);
-    border-color: var(--headline-color);
-    box-shadow: 1px 1px 0 var(--headline-color);
-}
-
-.page-btn:disabled {
-    background: var(--cream-color);
-    color: var(--text-muted);
-    cursor: not-allowed;
-    border-color: var(--border-color);
-    box-shadow: none;
 }
 
 /* Tab layout */
@@ -596,6 +446,8 @@ h1::after {
 /* Articles Grid */
 .articles-grid {
     display: block;
+    background: var(--hn-white);
+    padding: 8px;
 }
 
 /* Column layout disabled temporarily for better alignment */
@@ -644,16 +496,6 @@ h1::after {
 
     h1::before {
         font-size: 0.6rem;
-    }
-
-    .pagination-controls {
-        gap: 0.25rem;
-    }
-
-    .page-btn {
-        padding: 0.375rem 0.5rem;
-        font-size: 0.8rem;
-        min-width: 35px;
     }
 
     .tab-btn {
@@ -711,10 +553,6 @@ h1::after {
         display: none;
     }
 
-    .pagination {
-        display: none;
-    }
-
     .tab-headers {
         display: none;
     }
@@ -726,37 +564,11 @@ h1::after {
 }
 
 /* Visited Article Styles */
-.article.visited {
-    background: var(--cream-color);
-    opacity: 0.85;
-    border-left-color: var(--text-muted);
-}
-
-.article.visited h3 {
-    color: var(--text-muted);
-}
-
 .article.visited h3 a {
-    color: var(--text-muted) !important;
+    color: var(--hn-visited) !important;
 }
 
-.article.visited h3 a:hover {
-    color: var(--link-color) !important;
-    opacity: 1;
-}
-
-.article.visited:hover {
-    background: var(--cream-color);
-    opacity: 0.9;
-    transform: translateX(1px);
-}
-
+.article.visited .article-date,
 .article.visited .comments-link {
-    color: var(--text-muted) !important;
-    opacity: 0.8;
-}
-
-.article.visited .comments-link:hover {
-    color: var(--link-color) !important;
-    opacity: 1;
+    color: var(--hn-visited) !important;
 }

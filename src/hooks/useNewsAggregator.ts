@@ -2,15 +2,11 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { Article, Source, AppState } from '../types';
 import { fetchHackerNews, fetchLobsters } from '../services/api';
 
-const ARTICLES_PER_PAGE = 10;
-
 export const useNewsAggregator = () => {
     const [state, setState] = useState<AppState>({
         hackerNewsArticles: [],
         lobstersArticles: [],
         activeTab: 'hackernews',
-        hackerNewsPage: 1,
-        lobstersPage: 1,
         isLoading: true,
         error: null
     });
@@ -51,13 +47,6 @@ export const useNewsAggregator = () => {
         }));
     }, []);
 
-    const changePage = useCallback((source: Source, page: number) => {
-        setState((prevState: AppState) => ({
-            ...prevState,
-            [source === 'hackernews' ? 'hackerNewsPage' : 'lobstersPage']: page
-        }));
-    }, []);
-
     const getActiveArticles = useCallback(() => {
         const articles = state.activeTab === 'hackernews'
             ? state.hackerNewsArticles
@@ -66,25 +55,13 @@ export const useNewsAggregator = () => {
         return [...articles].sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
     }, [state.activeTab, state.hackerNewsArticles, state.lobstersArticles]);
 
-    const getPaginatedArticles = useCallback(() => {
+    const getAllArticles = useCallback(() => {
         const sortedArticles = getActiveArticles();
-        const currentPage = state.activeTab === 'hackernews'
-            ? state.hackerNewsPage
-            : state.lobstersPage;
-
-        const start = (currentPage - 1) * ARTICLES_PER_PAGE;
-        const end = start + ARTICLES_PER_PAGE;
 
         return {
-            articles: sortedArticles.slice(start, end),
-            pagination: {
-                currentPage,
-                totalPages: Math.ceil(sortedArticles.length / ARTICLES_PER_PAGE),
-                totalArticles: sortedArticles.length,
-                articlesPerPage: ARTICLES_PER_PAGE
-            }
+            articles: sortedArticles
         };
-    }, [getActiveArticles, state.activeTab, state.hackerNewsPage, state.lobstersPage]);
+    }, [getActiveArticles]);
 
     // Load articles on mount
     useEffect(() => {
@@ -124,8 +101,6 @@ export const useNewsAggregator = () => {
     return {
         ...state,
         switchTab,
-        changePage,
-        getPaginatedArticles,
-        articlesPerPage: ARTICLES_PER_PAGE
+        getAllArticles
     };
 };

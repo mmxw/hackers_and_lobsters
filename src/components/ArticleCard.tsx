@@ -26,39 +26,40 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
     };
 
     const formatDate = (date: Date) => {
-        return date.toLocaleDateString('en-US', {
-            month: 'long',
-            day: 'numeric',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-        });
+        const now = new Date();
+        const diffMs = now.getTime() - date.getTime();
+        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+        
+        if (diffHours < 1) {
+            const diffMinutes = Math.floor(diffMs / (1000 * 60));
+            return `${diffMinutes} minute${diffMinutes !== 1 ? 's' : ''} ago`;
+        } else if (diffHours < 24) {
+            return `${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+        } else {
+            const diffDays = Math.floor(diffHours / 24);
+            return `${diffDays} day${diffDays !== 1 ? 's' : ''} ago`;
+        }
     };
 
     return (
         <article className={`article ${isVisited ? 'visited' : ''}`}>
-            <header className="article-header">
-                <h3>
-                    <a
-                        href={article.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={handleLinkClick}
-                    >
-                        {article.title}
-                    </a>
-                </h3>
-                <div className="article-meta">
-                    <time className="article-date" dateTime={article.timestamp.toISOString()}>
-                        {formatDate(article.timestamp)}
-                    </time>
-                </div>
-            </header>
-            <footer className="article-footer">
-                <a href={article.commentsUrl} target="_blank" rel="noopener noreferrer" className="comments-link">
-                    Discussion & Comments →
+            <h3>
+                <a
+                    href={article.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handleLinkClick}
+                >
+                    {article.title}
                 </a>
-            </footer>
+            </h3>
+            {' '}
+            <span className="article-meta">
+                <span className="article-date">authored by {article.author || 'anonymous'} {formatDate(article.timestamp)} | </span>
+                <a href={article.commentsUrl} target="_blank" rel="noopener noreferrer" className="comments-link">
+                    comments
+                </a>
+            </span>
         </article>
     );
 };

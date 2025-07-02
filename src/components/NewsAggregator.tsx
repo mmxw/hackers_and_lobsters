@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNewsAggregator } from '../hooks/useNewsAggregator';
 import { TabContent } from './TabContent';
-import { Pagination } from './Pagination';
 
 export const NewsAggregator: React.FC = () => {
     const {
@@ -11,11 +10,10 @@ export const NewsAggregator: React.FC = () => {
         isLoading,
         error,
         switchTab,
-        changePage,
-        getPaginatedArticles
+        getAllArticles
     } = useNewsAggregator();
 
-    const { articles, pagination } = getPaginatedArticles();
+    const { articles } = getAllArticles();
 
     if (error) {
         return (
@@ -42,12 +40,6 @@ export const NewsAggregator: React.FC = () => {
             hackerNewsCount={hackerNewsArticles.length}
             lobstersCount={lobstersArticles.length}
             onTabSwitch={switchTab}
-        >
-            <Pagination
-                source={activeTab}
-                pagination={pagination}
-                onPageChange={changePage}
-            />
-        </TabContent>
+        />
     );
 };
