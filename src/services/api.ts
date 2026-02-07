@@ -59,39 +59,59 @@ export const fetchHackerNews = async (
 export const fetchLobsters = async (
     onArticleAdded: (article: Article) => void
 ): Promise<void> => {
-    try {
-        const response = await fetch('https://corsproxy.io/?https://lobste.rs/newest.json');
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    // Try multiple CORS proxies in order of preference
+    const proxies = [
+        'https://api.allorigins.win/raw?url=',
+        'https://corsproxy.io/?',
+        ''  // Direct attempt (will fail in browser but works in some environments)
+    ];
+
+    for (const proxy of proxies) {
+        try {
+            const url = `${proxy}https://lobste.rs/newest.json`;
+            console.log(`Trying Lobste.rs with: ${proxy || 'direct'}`);
+            
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            const stories = await response.json();
+
+            if (!Array.isArray(stories) || stories.length === 0) {
+                throw new Error('No stories found in response');
+            }
+
+            console.log(`Successfully fetched ${stories.length} stories from Lobste.rs`);
+
+            // Process all stories from the newest endpoint
+            for (const story of stories) {
+                const article: Article = {
+                    title: story.title || 'Untitled',
+                    url: story.url || story.short_id_url,
+                    timestamp: story.created_at ? new Date(story.created_at) : new Date(),
+                    source: 'Lobste.rs',
+                    commentsUrl: story.comments_url || story.short_id_url
+                };
+
+                onArticleAdded(article);
+            }
+
+            return; // Success, exit the function
+
+        } catch (error) {
+            console.warn(`Lobste.rs fetch failed with ${proxy || 'direct'}:`, error);
+            // Continue to next proxy
         }
-
-        const stories = await response.json();
-
-        if (!Array.isArray(stories) || stories.length === 0) {
-            throw new Error('No stories found in response');
-        }
-
-        // Process all stories from the newest endpoint
-        for (const story of stories) {
-            const article: Article = {
-                title: story.title || 'Untitled',
-                url: story.url || story.short_id_url,
-                timestamp: story.created_at ? new Date(story.created_at) : new Date(),
-                source: 'Lobste.rs',
-                commentsUrl: story.comments_url || story.short_id_url
-            };
-
-            onArticleAdded(article);
-        }
-
-    } catch (error) {
-        console.error('Lobste.rs fetch failed:', error);
-        onArticleAdded({
-            title: 'Failed to load Lobste.rs',
-            url: 'https://lobste.rs',
-            timestamp: new Date(),
-            source: 'Lobste.rs',
-            commentsUrl: 'https://lobste.rs'
-        });
     }
+
+    // All proxies failed
+    console.error('All Lobste.rs fetch attempts failed');
+    onArticleAdded({
+        title: 'Failed to load Lobste.rs - CORS proxy unavailable',
+        url: 'https://lobste.rs',
+        timestamp: new Date(),
+        source: 'Lobste.rs',
+        commentsUrl: 'https://lobste.rs'
+    });
 };
