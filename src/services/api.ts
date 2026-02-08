@@ -59,33 +59,65 @@ export const fetchHackerNews = async (
 export const fetchLobsters = async (
     onArticleAdded: (article: Article) => void
 ): Promise<void> => {
-    // Try multiple CORS proxies in order of preference
+    // Try multiple CORS proxies in order of preference (fastest first)
     const proxies = [
-        'https://api.allorigins.win/raw?url=',
         'https://corsproxy.io/?',
-        ''  // Direct attempt (will fail in browser but works in some environments)
+        '',  // Direct attempt (will fail in browser but works in some environments)
+        'https://api.allorigins.win/raw?url='
     ];
 
     for (const proxy of proxies) {
         try {
-            const url = `${proxy}https://lobste.rs/newest.json`;
+            // Fetch both hottest and newest endpoints concurrently
+            const hottestUrl = `${proxy}https://lobste.rs/hottest.json`;
+            const newestUrl = `${proxy}https://lobste.rs/newest.json`;
+            
             console.log(`Trying Lobste.rs with: ${proxy || 'direct'}`);
             
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            // Add 10 second timeout for each request
+            const timeoutMs = 10000;
+            const fetchWithTimeout = (url: string) => 
+                Promise.race([
+                    fetch(url),
+                    new Promise<Response>((_, reject) => 
+                        setTimeout(() => reject(new Error('Request timeout')), timeoutMs)
+                    )
+                ]);
+
+            const [hottestResponse, newestResponse] = await Promise.all([
+                fetchWithTimeout(hottestUrl),
+                fetchWithTimeout(newestUrl)
+            ]);
+
+            if (!hottestResponse.ok || !newestResponse.ok) {
+                throw new Error('HTTP error fetching stories');
             }
 
-            const stories = await response.json();
+            const [hottestStories, newestStories] = await Promise.all([
+                hottestResponse.json(),
+                newestResponse.json()
+            ]);
 
-            if (!Array.isArray(stories) || stories.length === 0) {
-                throw new Error('No stories found in response');
+            if (!Array.isArray(hottestStories) || !Array.isArray(newestStories)) {
+                throw new Error('Invalid response format');
             }
 
-            console.log(`Successfully fetched ${stories.length} stories from Lobste.rs`);
+            // Combine and deduplicate by short_id
+            const allStories = [...hottestStories, ...newestStories];
+            const seenIds = new Set<string>();
+            const uniqueStories = allStories.filter(story => {
+                if (seenIds.has(story.short_id)) {
+                    return false;
+                }
+                seenIds.add(story.short_id);
+                return true;
+            });
 
-            // Process all stories from the newest endpoint
-            for (const story of stories) {
+            console.log(`Successfully fetched ${hottestStories.length} hottest + ${newestStories.length} newest = ${allStories.length} total stories from Lobste.rs`);
+            console.log(`After deduplication: ${uniqueStories.length} unique articles`);
+
+            // Process all unique stories
+            for (const story of uniqueStories) {
                 const article: Article = {
                     title: story.title || 'Untitled',
                     url: story.url || story.short_id_url,
